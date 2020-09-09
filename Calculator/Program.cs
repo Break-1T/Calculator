@@ -11,27 +11,42 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
+            Console.WriteLine(Calculator.BinarySum(10,10000));
         }
 
     }
     class Calculator
     {
-        public static string BinarySum(long x,long y)
+        public static string BinarySum(long x,long y)//111 + 10 = 1001
         {
-            long[] FirstNumbers = Digits(x);
-            long[] SecondNumbers = Digits(y);
+            List<long> FirstNumbers = Digits(x);//111
+            List<long> SecondNumbers = Digits(y);//10
             string result = "";
-            if (FirstNumbers.Length > SecondNumbers.Length)
+            if (FirstNumbers.Count > SecondNumbers.Count)
             {
-                for(long i=FirstNumbers.Length-1; i>=0; i--)
-                {
+                SecondNumbers.Reverse();
+                int diff = FirstNumbers.Count - SecondNumbers.Count;
+                for (int i = 0; i < diff; i++)
+                    SecondNumbers.Add(0);
+                SecondNumbers.Reverse();
+            }
+            else
+            {
+                FirstNumbers.Reverse();
+                int diff = SecondNumbers.Count-FirstNumbers.Count;
+                for (int i = 0; i < diff; i++)
+                    FirstNumbers.Add(0);
+                FirstNumbers.Reverse();
+            }
+            int length = FirstNumbers.Count;
+            for(int i = length - 1; i >= 0; i--)
+            {
 
-                }
             }
 
             return "";
         }
-        private static long[] Digits(long x)
+        private static List<long> Digits(long x)
         {
             List<long> input = new List<long>();
             while (x > 0)
@@ -40,7 +55,7 @@ namespace Calculator
                 x /= 10;
             }
             input.Reverse();
-            return input.ToArray();
+            return input;
         }
     }
 }
