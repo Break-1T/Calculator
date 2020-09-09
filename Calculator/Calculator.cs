@@ -1,15 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Calculator
 {
+    //Скласти алгоритм(блок-схему) та програму для виконання основних арифметичних операцій
+    //(додавання, віднімання, множення та ділення) 
+    //в різних системах числення(двійковій, вісімковій та шістнадцятковій).
     class Calculator
     {
-        public static string BinarySum(long x,long y)//111 + 10 = 1001
+        public static string BinarySum(long x,long y)//101 + 10 = 111
         {
             List<long> FirstNumbers = Digits(x);//111
             List<long> SecondNumbers = Digits(y);//10
-            string result = "";
+            List<long> result = new List<long>();
+            string end = "";
 
             if (FirstNumbers.Count > SecondNumbers.Count)
             {
@@ -29,18 +34,31 @@ namespace Calculator
             }
 
             int length = FirstNumbers.Count;
+            int n = 0;
             for(int i = length - 1; i >= 0; i--)
             {
-                if ((FirstNumbers[i] + SecondNumbers[i]) > 1)
+                bool RankTransfer = false;
+                if ((FirstNumbers[i] + SecondNumbers[i]) == 2)
                 {
-                    result += "0";
-
+                    RankTransfer = true;
+                    result.Add(0);
+                    string temp = (FirstNumbers[i] + 1).ToString();
                 }
-                result += (FirstNumbers[i] + SecondNumbers[i]).ToString();
+                if (RankTransfer == true)
+                {
+                    result.Add((FirstNumbers[i+1] +1));
+                }
+                else
+                {
+                    result.Add((FirstNumbers[i] + SecondNumbers[i]));
+                }
             }
             result.Reverse();
-            return result;
+            foreach (long i in result)
+                end += i;
+            return end;
         }
+
         private static List<long> Digits(long x)
         {
             List<long> input = new List<long>();
