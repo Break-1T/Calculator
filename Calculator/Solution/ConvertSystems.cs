@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Calculator.Solution
 {
@@ -156,6 +157,90 @@ namespace Calculator.Solution
 
             result = WholeSum + ModSum;
 
+            return result.ToString();
+        }
+        public static string From16To10(string x)
+        {
+            List<string> SymbolsList = new List<string>();
+            char[] symbols = x.ToCharArray();
+            for (int i = 0; i < symbols.Length; i++)
+            {
+                switch (symbols[i])
+                {
+                    case 'A':
+                        SymbolsList.Add("10");
+                        break;
+
+                    case 'B':
+                        SymbolsList.Add("11");
+                        break;
+
+                    case 'C':
+                        SymbolsList.Add("12");
+                        break;
+
+                    case 'D':
+                        SymbolsList.Add("13");
+                        break;
+
+                    case 'E':
+                        SymbolsList.Add("14");
+                        break;
+
+                    case 'F':
+                        SymbolsList.Add("15");
+                        break;
+                    default:
+                        SymbolsList.Add(symbols[i].ToString());
+                        break;
+                }
+            }
+
+            int ModNumber = 0;
+            // Поиск первого вхождения запятой
+            foreach (string i in SymbolsList)
+            {
+                if (i == ".")
+                    break;
+                ModNumber++;
+            }
+
+            List<int> WholeList = new List<int>();
+            List<int> ModList = new List<int>();
+
+            for(int i = 0; i < SymbolsList.Count; i++)
+            {
+                if (i == ModNumber)
+                    continue;
+                if (i > ModNumber)
+                {
+                    ModList.Add(Convert.ToInt32(SymbolsList[i]));
+                }
+                else
+                {
+                    WholeList.Add(Convert.ToInt32(SymbolsList[i]));
+                }
+
+            }
+
+            double WholeSum = 0;
+            double ModSum = 0;
+
+            double result;
+
+            WholeList.Reverse();
+
+            for (int i = 0; i < WholeList.Count; i++)
+            {
+                WholeSum += WholeList[i] * Math.Pow(16, i);
+            }
+
+            for (int i = 0; i < ModList.Count; i++)
+            {
+                ModSum += ModList[i] * Math.Pow(16, -(i + 1));
+            }
+
+            result = WholeSum + ModSum;
             return result.ToString();
         }
 
