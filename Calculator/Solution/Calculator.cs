@@ -74,6 +74,7 @@ namespace Calculator.Solution
                     break;
             }
             Console.WriteLine($"Результат: {ConvertSystems.From10To2(result)}");
+            Console.ReadKey();
         }
         private static void Octal()
         {
