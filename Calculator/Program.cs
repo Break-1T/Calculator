@@ -1,4 +1,5 @@
 ﻿using System;
+using Calculator.Solution;
 
 namespace Calculator
 {
@@ -6,11 +7,11 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Console.Write("Enter x: ");
-            int x = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Enter y: ");
-            int y = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine($"sum {x} + {y} = {Calculator.BinarySum(x, y)}");
+            //Console.Write("Enter x: ");
+            //int x = Convert.ToInt32(Console.ReadLine());
+            //Console.Write("Enter y: ");
+            //int y = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(ConvertSystems.From2To10(111010.1001));
         }
     }
 }
