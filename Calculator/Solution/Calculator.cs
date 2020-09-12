@@ -36,6 +36,7 @@ namespace Calculator.Solution
 
         private static void Binary()
         {
+            Console.WriteLine("*Вместо символа '.' используйте ','");
             Console.Write("Введите первое число: ");
             double x = Convert.ToDouble(Console.ReadLine());
             Console.Write("Введите второе число: ");
@@ -78,6 +79,7 @@ namespace Calculator.Solution
         }
         private static void Octal()
         {
+            Console.WriteLine("*Вместо символа '.' используйте ','");
             Console.Write("Введите первое число: ");
             double x = Convert.ToDouble(Console.ReadLine());
             Console.Write("Введите второе число: ");
