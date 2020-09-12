@@ -127,6 +127,38 @@ namespace Calculator.Solution
 
             return result.ToString();
         }
+        public static string From8To10(double x)//21.760 = 17.96875
+        {
+            long WholePart = (long)x;
+            long length = (x.ToString().Length - WholePart.ToString().Length)-1;
+            double ModTemp = (x-WholePart)*Math.Pow(10,length);
+            long ModPart = (long)ModTemp;
+
+            double WholeSum = 0;
+            double ModSum = 0;
+
+            double result;
+
+            List<long> WholeList = Digits(WholePart);
+            List<long> ModList = Digits(ModPart);
+
+            WholeList.Reverse();
+
+            for (int i = 0; i < WholeList.Count; i++)
+            {
+                WholeSum += WholeList[i]*Math.Pow(8, i);
+            }
+
+            for (int i = 0; i < ModList.Count; i++)
+            {
+                ModSum += ModList[i]*Math.Pow(8, -(i + 1));
+            }
+
+            result = WholeSum + ModSum;
+
+            return result.ToString();
+        }
+
 
         private static List<long> Digits(long x)
         {

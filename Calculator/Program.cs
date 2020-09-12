@@ -11,7 +11,7 @@ namespace Calculator
             //int x = Convert.ToInt32(Console.ReadLine());
             //Console.Write("Enter y: ");
             //int y = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(ConvertSystems.From2To10(111010.1001));
+            Console.WriteLine(ConvertSystems.From8To10(3477.1007));
         }
     }
 }
