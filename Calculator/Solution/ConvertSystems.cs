@@ -6,26 +6,55 @@ namespace Calculator.Solution
 {
     class ConvertSystems
     {
-        public static string To2(int x)
+        public static string From10To2(double x,int n) //16.46
         {
-            List<int> numbers = new List<int>();
+            long WholePart = (long)x;
+            double ModPart = x - WholePart;
+            Console.WriteLine(ModPart);
+
+            List<long> WholeList = new List<long>();
+            List<long> ModList = new List<long>();
+
             string result = "";
 
-            while (x >= 1)
+            //Whole Part = > WholeList
+            while (WholePart >= 1)
             {
-                int mod = x % 2;
-                numbers.Add(mod);
-                x /= 2;
+                int mod = (int)WholePart % 2;
+                WholeList.Add(mod);
+                WholePart /= 2;
+            }
+            //Mod Part = > ModList
+            for(n = 0; n < 8; n++)
+            {
+                double Whole = ModPart * 2;
+                int temp = (int)Whole;
+                ModList.Add(temp);
+                ModPart = Math.Abs(temp - Whole);
             }
 
-            numbers.Reverse();
+            WholeList.Reverse();
 
-            foreach (int i in numbers)
+            for(int i = 0; i <= WholeList.Count; i++)
+            {
+                if (i < WholeList.Count)
+                {
+                    result += WholeList[i].ToString();
+                }
+                if (i == WholeList.Count)
+                {
+                    result += ",";
+                }
+            }
+
+            foreach (long i in ModList)
+            {
                 result += i.ToString();
+            }
 
             return result;
         }
-        public static string To8(int x)
+        public static string From10To8(int x)
         {
             List<int> numbers = new List<int>();
             string result = "";
@@ -44,7 +73,7 @@ namespace Calculator.Solution
 
             return result;
         }
-        public static string To16(int x)
+        public static string From10To16(int x)
         {
             List<int> numbers = new List<int>();
             string result = "";
