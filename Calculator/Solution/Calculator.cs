@@ -12,7 +12,7 @@ namespace Calculator.Solution
         {
             Console.WriteLine(new string('-', 40));
             Console.WriteLine(
-                    "Выберите номер системы сичсления:\n" +
+                    "Выберите номер системы счисления:\n" +
                     "1.Двоичная\n" +
                     "2.Восьмеричная\n" +
                     "3.Шестнадцатеричная");
