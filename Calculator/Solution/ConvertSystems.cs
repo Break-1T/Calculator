@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace Calculator.Solution
 {
@@ -10,7 +9,6 @@ namespace Calculator.Solution
         {
             long WholePart = (long)x;
             double ModPart = x - WholePart;
-            Console.WriteLine(ModPart);
 
             List<long> WholeList = new List<long>();
             List<long> ModList = new List<long>();
@@ -115,16 +113,14 @@ namespace Calculator.Solution
             while (WholePart >= 1)
             {
                 int mod = (int)WholePart % 16;
-                WholeList.Add(mod);
+                WholeList.Add(Math.Abs(mod));
                 WholePart /= 16;
             }
             //Mod Part = > ModList
             for (int n = 0; n < 4; n++)
             {
                 double Whole = ModPart * 16;
-                Console.Write($"\t {Whole}");
                 int temp = (int)Whole;
-                Console.WriteLine(temp);
                 ModList.Add(temp);
                 ModPart = Math.Abs(temp - Whole);
             }
@@ -200,7 +196,7 @@ namespace Calculator.Solution
             return result;
         }
 
-        public static string From2To10(double x)
+        public static double From2To10(double x)
         {
             long WholePart=(long) x;
             long length = (x.ToString().Length - WholePart.ToString().Length)-1;
@@ -234,9 +230,9 @@ namespace Calculator.Solution
 
             result = WholeSum + ModSum;
 
-            return result.ToString();
+            return result;
         }
-        public static string From8To10(double x)
+        public static double From8To10(double x)
         {
             long WholePart = (long)x;
             long length = (x.ToString().Length - WholePart.ToString().Length)-1;
@@ -265,9 +261,9 @@ namespace Calculator.Solution
 
             result = WholeSum + ModSum;
 
-            return result.ToString();
+            return result;
         }
-        public static string From16To10(string x)
+        public static double From16To10(string x)
         {
             List<string> SymbolsList = new List<string>();
             char[] symbols = x.ToCharArray();
@@ -349,7 +345,7 @@ namespace Calculator.Solution
             }
 
             result = WholeSum + ModSum;
-            return result.ToString();
+            return result;
         }
 
         private static List<long> Digits(long x)
