@@ -7,7 +7,7 @@ namespace Calculator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(ConvertSystems.From10To2(16.56,8));
+            Console.WriteLine(ConvertSystems.From10To16(371.0349));
 
         }
     }

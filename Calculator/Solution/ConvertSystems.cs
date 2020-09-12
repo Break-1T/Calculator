@@ -6,7 +6,7 @@ namespace Calculator.Solution
 {
     class ConvertSystems
     {
-        public static string From10To2(double x,int n) //16.46
+        public static string From10To2(double x)
         {
             long WholePart = (long)x;
             double ModPart = x - WholePart;
@@ -25,7 +25,7 @@ namespace Calculator.Solution
                 WholePart /= 2;
             }
             //Mod Part = > ModList
-            for(n = 0; n < 8; n++)
+            for(int n = 0; n < 4; n++)
             {
                 double Whole = ModPart * 2;
                 int temp = (int)Whole;
@@ -54,41 +54,86 @@ namespace Calculator.Solution
 
             return result;
         }
-        public static string From10To8(int x)
+        public static string From10To8(double x)
         {
-            List<int> numbers = new List<int>();
+            long WholePart = (long)x;
+            double ModPart = x - WholePart;
+
+            List<long> WholeList = new List<long>();
+            List<long> ModList = new List<long>();
+
             string result = "";
 
-            while (x >= 1)
+            //Whole Part = > WholeList
+            while (WholePart >= 1)
             {
-                int mod = x % 8;
-                numbers.Add(mod);
-                x /= 8;
+                int mod = (int)WholePart % 8;
+                WholeList.Add(mod);
+                WholePart /= 8;
+            }
+            //Mod Part = > ModList
+            for (int n = 0; n < 4; n++)
+            {
+                double Whole = ModPart * 8;
+                int temp = (int)Whole;
+                ModList.Add(temp);
+                ModPart = Math.Abs(temp - Whole);
             }
 
-            numbers.Reverse();
+            WholeList.Reverse();
 
-            foreach (int i in numbers)
+            for (int i = 0; i <= WholeList.Count; i++)
+            {
+                if (i < WholeList.Count)
+                {
+                    result += WholeList[i].ToString();
+                }
+                if (i == WholeList.Count)
+                {
+                    result += ",";
+                }
+            }
+
+            foreach (long i in ModList)
+            {
                 result += i.ToString();
+            }
 
             return result;
         }
-        public static string From10To16(int x)
+        public static string From10To16(double x)
         {
-            List<int> numbers = new List<int>();
+            long WholePart = (long)x;
+            double ModPart = x - WholePart;
+
+            List<long> WholeList = new List<long>();
+            List<long> ModList = new List<long>();
+
             string result = "";
 
-            while (x >= 1)
+            //Whole Part = > WholeList
+            while (WholePart >= 1)
             {
-                int mod = x % 16;
-                numbers.Add(mod);
-                x /= 16;
+                int mod = (int)WholePart % 16;
+                WholeList.Add(mod);
+                WholePart /= 16;
             }
-            numbers.Reverse();
-
-            for (int i = 0; i < numbers.Count; i++)
+            //Mod Part = > ModList
+            for (int n = 0; n < 4; n++)
             {
-                switch (numbers[i])
+                double Whole = ModPart * 16;
+                Console.Write($"\t {Whole}");
+                int temp = (int)Whole;
+                Console.WriteLine(temp);
+                ModList.Add(temp);
+                ModPart = Math.Abs(temp - Whole);
+            }
+
+            WholeList.Reverse();
+
+            for (int i = 0; i < WholeList.Count; i++)
+            {
+                switch (WholeList[i])
                 {
                     case 10:
                         result += 'A';
@@ -114,14 +159,48 @@ namespace Calculator.Solution
                         result += 'F';
                         break;
                     default:
-                        result += numbers[i].ToString();
+                        result += WholeList[i].ToString();
                         break;
                 }
             }
+            result += ",";
+            for (int i = 0; i < ModList.Count; i++)
+            {
+                switch (ModList[i])
+                {
+                    case 10:
+                        result += 'A';
+                        break;
+
+                    case 11:
+                        result += 'B';
+                        break;
+
+                    case 12:
+                        result += 'C';
+                        break;
+
+                    case 13:
+                        result += 'D';
+                        break;
+
+                    case 14:
+                        result += 'E';
+                        break;
+
+                    case 15:
+                        result += 'F';
+                        break;
+                    default:
+                        result += ModList[i].ToString();
+                        break;
+                }
+            }
+            
             return result;
         }
 
-        public static string From2To10(double x) //111010,1001
+        public static string From2To10(double x)
         {
             long WholePart=(long) x;
             long length = (x.ToString().Length - WholePart.ToString().Length)-1;
@@ -157,7 +236,7 @@ namespace Calculator.Solution
 
             return result.ToString();
         }
-        public static string From8To10(double x)//21.760 = 17.96875
+        public static string From8To10(double x)
         {
             long WholePart = (long)x;
             long length = (x.ToString().Length - WholePart.ToString().Length)-1;
@@ -272,7 +351,6 @@ namespace Calculator.Solution
             result = WholeSum + ModSum;
             return result.ToString();
         }
-
 
         private static List<long> Digits(long x)
         {
