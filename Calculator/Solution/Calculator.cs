@@ -137,8 +137,7 @@ namespace Calculator.Solution
 
             double temp_1 = ConvertSystems.From16To10(x);
             double temp_2 = ConvertSystems.From16To10(y);
-            Console.WriteLine(temp_1);
-            Console.WriteLine(temp_2);
+ы
 
             int n = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
