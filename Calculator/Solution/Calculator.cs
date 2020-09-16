@@ -51,8 +51,6 @@ namespace Calculator.Solution
 
             double temp_1 = ConvertSystems.From2To10(x);
             double temp_2 = ConvertSystems.From2To10(y);
-            Console.WriteLine(temp_1);
-            Console.WriteLine(temp_2);
 
             int n = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(new string('-', 40));
@@ -94,8 +92,7 @@ namespace Calculator.Solution
 
             double temp_1 = ConvertSystems.From8To10(x);
             double temp_2 = ConvertSystems.From8To10(y);
-            Console.WriteLine(temp_1);
-            Console.WriteLine(temp_2);
+
 
             int n = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine(new string('-', 40));

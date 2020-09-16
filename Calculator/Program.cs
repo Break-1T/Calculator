@@ -7,6 +7,7 @@ namespace Calculator
         static void Main(string[] args)
         {
             Solution.Calculator.GetSolution();
+
         }
     }
 }
